@@ -1,0 +1,163 @@
+import {
+  boolean,
+  integer,
+  jsonb,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
+export type ElfAvatar = {
+  skin: string;
+  hat: string;
+  hair: string;
+  outfit: string;
+  accent: string;
+  eye: string;
+  accessory: "bells" | "glasses" | "scarf" | "bow" | "none";
+};
+export type EventMeta = Record<string, string | number | boolean | null>;
+export const parents = pgTable("parents", {
+  id: serial("id").primaryKey(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  name: varchar("name", { length: 120 }).notNull(),
+  replyMode: varchar("reply_mode", { length: 20 }).notNull().default("ai"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const admins = pgTable("admins", {
+  id: serial("id").primaryKey(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  name: varchar("name", { length: 120 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const elves = pgTable("elves", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 80 }).notNull(),
+  gender: varchar("gender", { length: 20 }).notNull(),
+  bio: text("bio").notNull(),
+  personality: text("personality").notNull(),
+  hobbies: text("hobbies").notNull(),
+  christmasJob: text("christmas_job").notNull(),
+  favoriteTreat: text("favorite_treat").notNull(),
+  funFact: text("fun_fact").notNull(),
+  avatar: jsonb("avatar").$type<ElfAvatar>().notNull(),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const wallDesigns = pgTable("wall_designs", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 80 }).notNull(),
+  pattern: varchar("pattern", { length: 40 }).notNull(),
+  primaryColor: varchar("primary_color", { length: 20 }).notNull(),
+  secondaryColor: varchar("secondary_color", { length: 20 }).notNull(),
+  accentColor: varchar("accent_color", { length: 20 }).notNull(),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const children = pgTable("children", {
+  id: serial("id").primaryKey(),
+  parentId: integer("parent_id")
+    .notNull()
+    .references(() => parents.id),
+  firstName: varchar("first_name", { length: 80 }).notNull(),
+  age: integer("age"),
+  favoriteColor: varchar("favorite_color", { length: 80 }),
+  favoriteActivity: varchar("favorite_activity", { length: 160 }),
+  birthday: varchar("birthday", { length: 20 }),
+  secretCode: varchar("secret_code", { length: 32 }).notNull().unique(),
+  elfId: integer("elf_id"),
+  wallDesignId: integer("wall_design_id"),
+  bubbleColor: varchar("bubble_color", { length: 40 }).default("#c4122f"),
+  bubbleShape: varchar("bubble_shape", { length: 40 }).default("round"),
+  onboardingComplete: boolean("onboarding_complete").default(false).notNull(),
+  christmasWish: text("christmas_wish"),
+  insideJokes: text("inside_jokes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const letters = pgTable("letters", {
+  id: serial("id").primaryKey(),
+  childId: integer("child_id").notNull(),
+  elfId: integer("elf_id"),
+  fromRole: varchar("from_role", { length: 20 }).notNull(),
+  body: text("body").notNull(),
+  bubbleColor: varchar("bubble_color", { length: 40 }),
+  bubbleShape: varchar("bubble_shape", { length: 40 }),
+  readAt: timestamp("read_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const quotes = pgTable("quotes", {
+  id: serial("id").primaryKey(),
+  text: text("text").notNull(),
+  attribution: varchar("attribution", { length: 120 }),
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const musicTracks = pgTable("music_tracks", {
+  id: serial("id").primaryKey(),
+  title: varchar("title", { length: 120 }).notNull(),
+  url: text("url").notNull(),
+  isDefault: boolean("is_default").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const subscriptions = pgTable("subscriptions", {
+  id: serial("id").primaryKey(),
+  parentId: integer("parent_id").notNull(),
+  planCode: varchar("plan_code", { length: 40 }).notNull(),
+  status: varchar("status", { length: 20 }).notNull(),
+  childLimit: integer("child_limit").notNull(),
+  period: varchar("period", { length: 20 }).notNull(),
+  amountCents: integer("amount_cents").notNull(),
+  startedAt: timestamp("started_at").defaultNow().notNull(),
+  expiresAt: timestamp("expires_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const tickets = pgTable("tickets", {
+  id: serial("id").primaryKey(),
+  parentId: integer("parent_id"),
+  email: varchar("email", { length: 255 }).notNull(),
+  subject: varchar("subject", { length: 200 }).notNull(),
+  message: text("message").notNull(),
+  status: varchar("status", { length: 20 }).notNull().default("open"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const ticketReplies = pgTable("ticket_replies", {
+  id: serial("id").primaryKey(),
+  ticketId: integer("ticket_id").notNull(),
+  fromRole: varchar("from_role", { length: 20 }).notNull(),
+  message: text("message").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const notifications = pgTable("notifications", {
+  id: serial("id").primaryKey(),
+  parentId: integer("parent_id").notNull(),
+  childId: integer("child_id"),
+  type: varchar("type", { length: 40 }).notNull(),
+  message: text("message").notNull(),
+  read: boolean("read").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const sessions = pgTable("sessions", {
+  id: varchar("id", { length: 64 }).primaryKey(),
+  role: varchar("role", { length: 20 }).notNull(),
+  parentId: integer("parent_id"),
+  childId: integer("child_id"),
+  adminId: integer("admin_id"),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const analyticsEvents = pgTable("analytics_events", {
+  id: serial("id").primaryKey(),
+  eventType: varchar("event_type", { length: 60 }).notNull(),
+  role: varchar("role", { length: 20 }),
+  parentId: integer("parent_id"),
+  childId: integer("child_id"),
+  metadata: jsonb("metadata").$type<EventMeta | null>(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+export const siteSettings = pgTable("site_settings", {
+  key: varchar("key", { length: 80 }).primaryKey(),
+  value: text("value").notNull(),
+});
