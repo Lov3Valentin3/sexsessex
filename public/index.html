@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>North Pole Pen Pals | Magical Elf Letters for Kids</title>
+    <meta
+      name="description"
+      content="A magical Christmas pen pal app where kids write letters to a North Pole elf. Safe, parent-controlled, and full of workshop wonder."
+    />
+    <meta
+      name="keywords"
+      content="Elf Pen Pal, Letters from the North Pole, Santa Letters, Christmas App for Kids, Elf Friend, Santa Pen Pal, Christmas Magic, North Pole Letters, Elf Mail, Santa's Workshop"
+    />
+    <meta property="og:title" content="North Pole Pen Pals | Magical Elf Letters for Kids" />
+    <meta property="og:description" content="My child has a magical North Pole pen pal!" />
+    <meta property="og:image" content="/images/og-share.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#07040a" />
+    <link rel="icon" href="/images/app-icon.png" />
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Nunito, Georgia, sans-serif;
+        color: #fff6e8;
+        background:
+          radial-gradient(ellipse at 20% -10%, rgba(61,255,138,.22), transparent 50%),
+          radial-gradient(ellipse at 85% 0%, rgba(196,18,47,.28), transparent 46%),
+          #07040a;
+      }
+      header, main { max-width: 960px; margin: 0 auto; padding: 24px; }
+      h1 { font-family: Georgia, serif; font-size: clamp(2rem, 6vw, 3.6rem); line-height: 1.1; }
+      .row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+      a.btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 14px 22px; border-radius: 999px; text-decoration: none; font-weight: 800;
+        border: 1px solid #f0c75e; color: #fff6e8; background: linear-gradient(#e11d48, #7a1020);
+      }
+      a.green { background: linear-gradient(#22c55e, #14532d); }
+      a.gold { background: linear-gradient(#f0c75e, #b45309); color: #1a0b08; }
+      .snow { position: fixed; inset: 0; pointer-events: none; }
+      .snow span { position: absolute; top: -10px; animation: fall linear infinite; }
+      @keyframes fall { to { transform: translateY(110vh); } }
+    </style>
+  </head>
+  <body>
+    <div class="snow" aria-hidden>
+      <span style="left:8%;animation-duration:9s">❄</span>
+      <span style="left:22%;animation-duration:12s">✦</span>
+      <span style="left:41%;animation-duration:8s">❄</span>
+      <span style="left:63%;animation-duration:11s">❄</span>
+      <span style="left:81%;animation-duration:10s">✦</span>
+    </div>
+    <header>
+      <strong>North Pole Pen Pals</strong>
+      <p>letters from Santa’s workshop</p>
+    </header>
+    <main>
+      <h1>Write letters to a magical elf at the North Pole</h1>
+      <p>Children ages 3–12 choose an elf pen pal, send cozy letters, and receive personalized replies. Parents keep every key.</p>
+      <div class="row">
+        <a class="btn" href="/parent/login">Parent Login</a>
+        <a class="btn green" href="/parent/register">Parent Register</a>
+        <a class="btn gold" href="/kid/login">Kid Login</a>
+      </div>
+    </main>
+  </body>
+</html>
