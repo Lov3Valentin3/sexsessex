@@ -1,0 +1,31 @@
+import { SiteFooter, SiteHeader } from "@/components/chrome";
+export const metadata = {
+  title: "Pricing",
+  description: "North Pole Pen Pals plan details are shown to parents after login.",
+};
+export default function PricingPage() {
+  return (
+    <main className="min-h-screen">
+      <SiteHeader />
+      <section className="mx-auto w-full max-w-3xl px-4 pb-16">
+        <article className="panel gold-border p-10 text-center">
+          <p className="font-script text-3xl text-np-green">Workshop tickets</p>
+          <h1 className="font-display text-4xl text-np-cream md:text-5xl">Price is here</h1>
+          <p className="mx-auto mt-4 max-w-xl text-np-cream/75">
+            Exact monthly, yearly, and annual prices for one child or four-plus kids live on the parent Prices tab after
+            you sign in. This page is just the doorway.
+          </p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href="/parent/login" className="magic-btn">
+              Parent login
+            </a>
+            <a href="/parent/register" className="magic-btn green">
+              Parent register
+            </a>
+          </div>
+        </article>
+      </section>
+      <SiteFooter />
+    </main>
+  );
+}
