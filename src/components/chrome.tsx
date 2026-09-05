@@ -26,10 +26,10 @@ export function SiteFooter() {
         </div>
         <div>
           <p className="font-display text-np-gold">Explore</p>
-          <div className="mt-3 grid gap-2 text-sm">
-            <a href="/pricing">Subscription plans</a>
+          <div className="mt-3 grid gap-2 text-    
+          <a href="/pricing">Price is here</a>
             <a href="/about">Our workshop story</a>
-            <a href="/#elves">Meet the elves</a>
+            <a href="/parent/login">Parent dashboard</a>
             <a href="/parent/register">Start a family pass</a>
           </div>
         </div>
