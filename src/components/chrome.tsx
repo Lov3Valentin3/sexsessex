@@ -3,15 +3,14 @@ export function SiteHeader() {
   return (
     <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-4 pb-6 pt-12">
       <BrandMark />
-      <nav className="hidden items-center gap-5 text-sm font-bold text-np-cream/80 md:flex">
-        <a href="/#elves">Elves</a>
+  <nav className="hidden items-center gap-5 text-sm font-bold text-np-cream/80 md:flex">
         <a href="/pricing">Pricing</a>
         <a href="/about">About</a>
         <a href="/parent/login">Parents</a>
         <a href="/kid/login" className="magic-btn !py-2 !px-4 text-sm">
           Kid Login
         </a>
-      </nav>
+      </nav>   
     </header>
   );
 }
@@ -28,9 +27,9 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-np-gold">Explore</p>
           <div className="mt-3 grid gap-2 text-sm">
-            <a href="/pricing">Subscription plans</a>
+            <a href="/pricing">Price is here</a>
             <a href="/about">Our workshop story</a>
-            <a href="/#elves">Meet the elves</a>
+            <a href="/parent/login">Parent dashboard</a>
             <a href="/parent/register">Start a family pass</a>
           </div>
         </div>
