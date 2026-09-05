@@ -161,12 +161,93 @@ body {
   );
   color: #3b0b14;
 }
-.ornament-number {
-  min-width: 4.4rem;
-  border-radius: 1.2rem;
-  background: radial-gradient(circle at 30% 20%, #3dff8a, #14532d 62%);
-  border: 2px solid #f0c75e;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+.countdown-rail {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.2rem;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  padding: 0.45rem 0.55rem 0.35rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(240, 199, 94, 0.16), rgba(7, 4, 10, 0.35)),
+    rgba(10, 6, 12, 0.72);
+  border: 1px solid rgba(240, 199, 94, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(196, 18, 47, 0.2) inset,
+    0 8px 20px rgba(0, 0, 0, 0.35);
+}
+.countdown-unit {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+.countdown-colon {
+  color: #f0c75e;
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.6rem;
+  text-shadow: 0 0 8px rgba(240, 199, 94, 0.7);
+  padding-bottom: 0.55rem;
+}
+.countdown-bauble {
+  position: relative;
+  min-width: 2.35rem;
+  padding: 0.42rem 0.38rem 0.28rem;
+  text-align: center;
+  border-radius: 999px 999px 0.85rem 0.85rem;
+  border: 1.5px solid #f0c75e;
+  box-shadow:
+    0 6px 12px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.countdown-bauble.red {
+  background: radial-gradient(circle at 30% 22%, #fb7185, #9f1239 68%);
+}
+.countdown-bauble.green {
+  background: radial-gradient(circle at 30% 22%, #86efac, #14532d 68%);
+}
+.countdown-bauble.gold {
+  background: radial-gradient(circle at 30% 22%, #fde68a, #b45309 70%);
+}
+.countdown-cap {
+  position: absolute;
+  top: -0.28rem;
+  left: 50%;
+  width: 0.7rem;
+  height: 0.28rem;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: linear-gradient(180deg, #fff1b8, #d4a017);
+  box-shadow: 0 0 6px rgba(240, 199, 94, 0.7);
+}
+.countdown-value {
+  display: block;
+  font-family: var(--font-display), "Cinzel Decorative", serif;
+  font-size: 0.95rem;
+  line-height: 1;
+  color: #14080c;
+  text-shadow: 0 1px 0 rgba(255, 246, 232, 0.35);
+}
+.countdown-label {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.48rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(20, 8, 12, 0.78);
+}
+.countdown-charm {
+  font-size: 0.95rem;
+  line-height: 1;
+  padding-bottom: 0.55rem;
+  filter: drop-shadow(0 0 6px rgba(240, 199, 94, 0.55));
+}
+.countdown-charm.sparkle {
+  color: #f0c75e;
+  animation: twinkle 1.6s ease-in-out infinite;
 }
 input,
 textarea,
