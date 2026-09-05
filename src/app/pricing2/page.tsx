@@ -1,66 +1,32 @@
 import { SiteFooter, SiteHeader } from "@/components/chrome";
-import { PLANS, formatPrice, periodLabel } from "@/lib/plans";
 export const metadata = {
   title: "Pricing",
-  description:
-    "North Pole Pen Pals subscription plans for one child or four-plus kids — monthly, yearly, and annual magic passes.",
+  description: "North Pole Pen Pals plan details are shown to parents after login.",
 };
 export default function PricingPage() {
-  const one = PLANS.filter((plan) => plan.childLimit === 1);
-  const family = PLANS.filter((plan) => plan.childLimit > 1);
   return (
     <main className="min-h-screen">
       <SiteHeader />
-      <section className="mx-auto w-full max-w-6xl px-4 pb-16">
-        <p className="font-script text-3xl text-np-green">Workshop tickets</p>
-        <h1 className="font-display text-4xl text-np-cream md:text-5xl">Plans for one kid or a whole sleigh</h1>
-        <p className="mt-3 max-w-2xl text-np-cream/75">
-          Unlimited messaging on every plan. Parents keep full letter history, AI-or-human replies, and kid secret codes.
-        </p>
-        <h2 className="font-display mt-10 text-2xl text-np-gold">One child</h2>
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
-          {one.map((plan) => (
-            <article key={plan.code} className={`panel gold-border p-6 ${plan.featured ? "ring-2 ring-np-green" : ""}`}>
-              <h3 className="font-display text-2xl text-np-gold">{plan.name}</h3>
-              <p className="mt-2 text-3xl font-extrabold">
-                {formatPrice(plan.priceCents)}
-                <span className="text-sm text-np-cream/60">{periodLabel(plan.period)}</span>
-              </p>
-              <p className="mt-2 text-sm">{plan.tagline}</p>
-              <ul className="mt-4 grid gap-1 text-sm text-np-cream/75">
-                {plan.perks.map((perk) => (
-                  <li key={perk}>{perk}</li>
-                ))}
-              </ul>
-              <a href="/parent/register" className="magic-btn mt-5 w-full">
-                Start
-              </a>
-            </article>
-          ))}
-        </div>
-        <h2 className="font-display mt-12 text-2xl text-np-gold">Four or more children</h2>
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
-          {family.map((plan) => (
-            <article key={plan.code} className={`panel gold-border p-6 ${plan.featured ? "ring-2 ring-np-green" : ""}`}>
-              <h3 className="font-display text-2xl text-np-gold">{plan.name}</h3>
-              <p className="mt-2 text-3xl font-extrabold">
-                {formatPrice(plan.priceCents)}
-                <span className="text-sm text-np-cream/60">{periodLabel(plan.period)}</span>
-              </p>
-              <p className="mt-2 text-sm">{plan.tagline}</p>
-              <ul className="mt-4 grid gap-1 text-sm text-np-cream/75">
-                {plan.perks.map((perk) => (
-                  <li key={perk}>{perk}</li>
-                ))}
-              </ul>
-              <a href="/parent/register" className="magic-btn green mt-5 w-full">
-                Start family plan
-              </a>
-            </article>
-          ))}
-        </div>
+      <section className="mx-auto w-full max-w-3xl px-4 pb-16">
+        <article className="panel gold-border p-10 text-center">
+          <p className="font-script text-3xl text-np-green">Workshop tickets</p>
+          <h1 className="font-display text-4xl text-np-cream md:text-5xl">Price is here</h1>
+          <p className="mx-auto mt-4 max-w-xl text-np-cream/75">
+            Exact monthly, yearly, and annual prices for one child or four-plus kids live on the parent Prices tab after
+            you sign in. This page is just the doorway.
+          </p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href="/parent/login" className="magic-btn">
+              Parent login
+            </a>
+            <a href="/parent/register" className="magic-btn green">
+              Parent register
+            </a>
+          </div>
+        </article>
       </section>
       <SiteFooter />
     </main>
   );
 }
+
