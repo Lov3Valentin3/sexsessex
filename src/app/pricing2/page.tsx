@@ -39,28 +39,4 @@ export default function PricingPage() {
           ))}
         </div>
         <h2 className="font-display mt-12 text-2xl text-np-gold">Four or more children</h2>
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
-          {family.map((plan) => (
-            <article key={plan.code} className={`panel gold-border p-6 ${plan.featured ? "ring-2 ring-np-green" : ""}`}>
-              <h3 className="font-display text-2xl text-np-gold">{plan.name}</h3>
-              <p className="mt-2 text-3xl font-extrabold">
-                {formatPrice(plan.priceCents)}
-                <span className="text-sm text-np-cream/60">{periodLabel(plan.period)}</span>
-              </p>
-              <p className="mt-2 text-sm">{plan.tagline}</p>
-              <ul className="mt-4 grid gap-1 text-sm text-np-cream/75">
-                {plan.perks.map((perk) => (
-                  <li key={perk}>{perk}</li>
-                ))}
-              </ul>
-              <a href="/parent/register" className="magic-btn green mt-5 w-full">
-                Start family plan
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
-      <SiteFooter />
-    </main>
-  );
-}
+        <div className="mt-4 grid 
