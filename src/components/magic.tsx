@@ -147,19 +147,33 @@ export function Countdown() {
     return () => window.clearInterval(id);
   }, []);
   const cells = [
-    [time.days, "Days"],
-    [time.hours, "Hours"],
-    [time.minutes, "Minutes"],
-    [time.seconds, "Seconds"],
+    [String(time.days).padStart(2, "0"), "days", "red"],
+    [String(time.hours).padStart(2, "0"), "hrs", "green"],
+    [String(time.minutes).padStart(2, "0"), "min", "gold"],
+    [String(time.seconds).padStart(2, "0"), "sec", "red"],
   ] as const;
   return (
-    <div className="flex flex-wrap gap-3">
-      {cells.map(([value, label]) => (
-        <div key={label} className="ornament-number px-3 py-3 text-center">
-          <div className="font-display text-3xl text-black">{value}</div>
-          <div className="text-[11px] font-extrabold uppercase tracking-widest text-black/80">{label}</div>
+    <div className="countdown-rail" role="timer" aria-label="Countdown to Christmas">
+      <span className="countdown-charm" aria-hidden>
+        🎄
+      </span>
+      {cells.map(([value, label, tone], index) => (
+        <div key={label} className="countdown-unit">
+          {index > 0 ? (
+            <span className="countdown-colon" aria-hidden>
+              :
+            </span>
+          ) : null}
+          <div className={`countdown-bauble ${tone}`}>
+            <span className="countdown-cap" aria-hidden />
+            <span className="countdown-value">{value}</span>
+            <span className="countdown-label">{label}</span>
+          </div>
         </div>
       ))}
+      <span className="countdown-charm sparkle" aria-hidden>
+        ✦
+      </span>
     </div>
   );
 }
