@@ -4,7 +4,6 @@ export function SiteHeader() {
     <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-4 pb-6 pt-12">
       <BrandMark />
       <nav className="hidden items-center gap-5 text-sm font-bold text-np-cream/80 md:flex">
-        <a href="/#elves">Elves</a>
         <a href="/pricing">Pricing</a>
         <a href="/about">About</a>
         <a href="/parent/login">Parents</a>
